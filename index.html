@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <input type="text" placeholder="Search for a city..." id="search-input" autocomplete="off">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="suggestions-container" id="suggestions-container"></div>
+        
+        <div class="weather-container">
+            <div class="weather-info hidden" id="weather-info">
+                <h2 id="city-name"></h2>
+                <div class="weather-icon">
+                    <img id="weather-icon" src="" alt="weather icon">
+                </div>
+                <div class="temperature">
+                    <h1 id="temperature"></h1>
+                </div>
+                <div class="description">
+                    <p id="description"></p>
+                </div>
+                <div class="details">
+                    <div class="col">
+                        <div class="humidity">
+                            <i class="fas fa-water"></i>
+                            <div>
+                                <span id="humidity"></span>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="wind">
+                            <i class="fas fa-wind"></i>
+                            <div>
+                                <span id="wind-speed"></span>
+                                <p>Wind Speed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="error hidden" id="error">
+                <p>City not found. Please try again!</p>
+            </div>
+        </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.container {
+    position: relative;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 0.4rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-box input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.search-box input::placeholder {
+    color: #adb5bd;
+}
+
+.search-box button {
+    background: #1e3c72;
+    border: none;
+    outline: none;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    color: white;
+}
+
+.search-box button:hover {
+    background: #2a5298;
+    transform: scale(1.05);
+}
+
+.weather-info {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.weather-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #1e3c72;
+    font-weight: 600;
+}
+
+.weather-icon {
+    margin: 0.5rem 0;
+    transform: scale(1.1);
+}
+
+.weather-icon img {
+    width: 100px;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+.temperature h1 {
+    font-size: 3.2rem;
+    margin: 0.5rem 0;
+    color: #2a5298;
+    font-weight: 700;
+}
+
+.description {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    color: #495057;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.humidity, .wind {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem;
+}
+
+.details i {
+    font-size: 2rem;
+    color: #1e3c72;
+}
+
+.details div div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.details span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2a5298;
+}
+
+.details p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    text-align: center;
+    color: #dc3545;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: #fff5f5;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.weather-info:not(.hidden) {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Add subtle hover effects to interactive elements */
+.details .col:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+/* Add a subtle gradient to the background */
+.container {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+}
+
+/* Add a subtle border to the search input */
+.search-box {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.suggestions-container {
+    position: absolute;
+    top: 4.8rem;
+    left: 2rem;
+    right: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.suggestions-container::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    transform: rotate(45deg);
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.suggestions-container.active {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.suggestion-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-main {
+    font-weight: 500;
+}
+
+.suggestion-region {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.suggestion-item:hover, .suggestion-item.selected {
+    background: #f0f4f8;
+    color: #1e3c72;
+}
+
+.suggestion-item:hover .suggestion-region,
+.suggestion-item.selected .suggestion-region {
+    color: #2a5298;
+}
+
+/* Add scrollbar styling for suggestions */
+.suggestions-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.suggestions-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.suggestions-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.suggestions-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Add a subtle animation for page load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
